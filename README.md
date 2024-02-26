@@ -2,8 +2,6 @@
 
 An RSA encryption implementation for secure data transmission, written in Rust.
 
-
-
 ## Algorithm
 
 1. Choose p and q
