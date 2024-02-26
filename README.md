@@ -5,7 +5,7 @@ An RSA encryption implementation for secure data transmission, written in Rust.
 
 
 ## Algorithm
-```
+
 1. Choose p and q
 2. Compute n = p * q
 3. Compute φ(n) = (p - 1) * (q - 1)
@@ -13,13 +13,11 @@ An RSA encryption implementation for secure data transmission, written in Rust.
 5. Compute a value for d such that (d * e) % φ(n) = 1.
 6. Public key is (e, n)
 7. Private key is (d, n)
-```
 
 ### Encryption
-```
+
 Using public key (e, n)
 $` c = m^2 mod n `$
-```
 
 ## Features
 1. Lightning-fast performance: Experience unmatched speed thanks to the power of Rust, leaving other languages in the dust. ⚡️
