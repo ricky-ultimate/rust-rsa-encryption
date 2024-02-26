@@ -18,7 +18,7 @@ An RSA encryption implementation for secure data transmission, written in Rust.
 ### Encryption
 ```
 Using public key (e, n)
-c = $`m ^ 2`$ mod n
+c = $`m^2`$ mod n
 ```
 
 ## Features
