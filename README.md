@@ -11,5 +11,5 @@ An RSA encryption implementation for secure data transmission, written in Rust.
 5. Compute a value for d such that (d * e) % φ(n) = 1.
 6. Public key is (e, n)
 7. Private key is (d, n)
-8. Encryption => c=m^e$ modn
+8. Encryption => $c=m^e modn$
 9. 
