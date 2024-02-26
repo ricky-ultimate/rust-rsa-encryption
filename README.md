@@ -15,7 +15,7 @@ An RSA encryption implementation for secure data transmission, written in Rust.
 ### Encryption
 
 Using public key (e, n)
-$` c = m^2 mod n `$
+$` c = m ^ e mod n `$
 
 ## Features
 1. Lightning-fast performance: Experience unmatched speed thanks to the power of Rust, leaving other languages in the dust. ⚡️
