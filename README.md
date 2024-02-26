@@ -15,6 +15,12 @@ An RSA encryption implementation for secure data transmission, written in Rust.
 7. Private key is (d, n)
 ```
 
+### Encryption
+```
+Using public key (e, n)
+c = $m ^ 2$ mod n
+```
+
 ## Features
 1. Lightning-fast performance: Experience unmatched speed thanks to the power of Rust, leaving other languages in the dust. ⚡️
 2. Bulletproof security: Rest easy knowing your data is protected by the battle-tested RSA algorithm and our meticulous coding practices.️
