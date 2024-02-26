@@ -12,4 +12,9 @@ An RSA encryption implementation for secure data transmission, written in Rust.
 6. Public key is (e, n)
 7. Private key is (d, n)
 
-### Encryption
+   ### Encryption
+   Sender A does the following:-
+   1. Obtains the recipient B's public key (n,e)
+   2. Represents the plaintext message as a positive integer m with $` 1 < m < n `$
+   3. Computes the ciphertext $`c = m^e mod n `$
+   4. Sends the ciphertext c to B.
