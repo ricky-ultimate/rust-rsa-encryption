@@ -14,6 +14,6 @@ An RSA encryption implementation for secure data transmission, written in Rust.
 
 
 ## Features
-Lightning-fast performance: Experience unmatched speed thanks to the power of Rust, leaving other languages in the dust. ⚡️
-Bulletproof security: Rest easy knowing your data is protected by the battle-tested RSA algorithm and our meticulous coding practices.️
-Effortless usability: Enjoy an intuitive and user-friendly experience, making encryption accessible to everyone.
+1. Lightning-fast performance: Experience unmatched speed thanks to the power of Rust, leaving other languages in the dust. ⚡️
+2. Bulletproof security: Rest easy knowing your data is protected by the battle-tested RSA algorithm and our meticulous coding practices.️
+3. Effortless usability: Enjoy an intuitive and user-friendly experience, making encryption accessible to everyone.
