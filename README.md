@@ -1,4 +1,4 @@
-# `Rust RSA ENCRYPTION`
+# `Unleash the Power of Encryption: Rust RSA Encryption`
 
 An RSA encryption implementation for secure data transmission, written in Rust.
 
@@ -11,3 +11,9 @@ An RSA encryption implementation for secure data transmission, written in Rust.
 5. Compute a value for d such that (d * e) % φ(n) = 1.
 6. Public key is (e, n)
 7. Private key is (d, n)
+
+
+## Features
+Lightning-fast performance: Experience unmatched speed thanks to the power of Rust, leaving other languages in the dust. ⚡️
+Bulletproof security: Rest easy knowing your data is protected by the battle-tested RSA algorithm and our meticulous coding practices.️
+Effortless usability: Enjoy an intuitive and user-friendly experience, making encryption accessible to everyone.
