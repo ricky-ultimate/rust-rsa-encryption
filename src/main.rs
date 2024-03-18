@@ -2,6 +2,12 @@ use gcd::Gcd;
 use std::io;
 use std::io::Write;
 
+const PRIMES: [u128;46] = [
+    2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89,
+    97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181,
+    191, 193, 197, 199,
+];
+
 fn main() {
     clearscreen::clear().expect("FAILED TO CLEAR SCREEN");
     display();
@@ -35,11 +41,6 @@ fn main() {
 }
 
 pub fn get_p() -> u128 {
-    let prime = [
-        2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89,
-        97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181,
-        191, 193, 197, 199,
-    ];
 
     print!("Enter p: ");
     io::stdout().flush().unwrap();
@@ -58,7 +59,7 @@ pub fn get_p() -> u128 {
         }
     };
 
-    if prime.contains(&p) {
+    if PRIMES.contains(&p) {
         return p;
     } else {
         println!("The entered number is not a prime number.");
@@ -67,12 +68,7 @@ pub fn get_p() -> u128 {
 }
 
 pub fn get_q() -> u128 {
-    let prime = [
-        2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89,
-        97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181,
-        191, 193, 197, 199,
-    ];
-
+    
     print!("Enter q: ");
     io::stdout().flush().unwrap();
 
@@ -90,7 +86,7 @@ pub fn get_q() -> u128 {
         }
     };
 
-    if prime.contains(&q) {
+    if PRIMES.contains(&q) {
         return q;
     } else {
         println!("The entered number is not a prime number.");
