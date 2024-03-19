@@ -32,7 +32,7 @@ fn main() {
             3 => {
                 clearscreen::clear().expect("Failed to clear screen");
                 decryption();
-                break;
+                break
             }
             4 => break,
             _ => println!("Invalid choice. Please enter 1, 2, 3 or 4."),
@@ -40,117 +40,61 @@ fn main() {
     }
 }
 
-pub fn get_p() -> u128 {
-
-    print!("Enter p: ");
-    io::stdout().flush().unwrap();
-
-    let mut p = String::new();
-
-    io::stdin().read_line(&mut p).expect("Error");
-
-    let p: u128 = match p.trim().parse() {
-        Ok(i) => i,
-        Err(_) => {
-            println!(
-                "Its seems there is some kind of error! Lets try again with an integer shall we?"
-            );
-            get_p()
-        }
-    };
-
-    if PRIMES.contains(&p) {
-        return p;
-    } else {
-        println!("The entered number is not a prime number.");
-        get_p()
-    }
-}
-
-pub fn get_q() -> u128 {
+pub fn get_val(name: &str) -> u128 {
     
-    print!("Enter q: ");
+    print!("Enter {}: ", name);
     io::stdout().flush().unwrap();
-
-    let mut q = String::new();
-
-    io::stdin().read_line(&mut q).expect("Error");
-
-    let q: u128 = match q.trim().parse() {
+    
+    let mut val = String::new();
+    
+    io::stdin().read_line(&mut val).expect("Error");
+    
+    let val: u128 = match val.trim().parse() {
         Ok(i) => i,
         Err(_) => {
             println!(
                 "Its seems there is some kind of error! Lets try again with an integer shall we?"
             );
-            get_q()
+            get_val(name)
         }
     };
-
-    if PRIMES.contains(&q) {
-        return q;
+    
+    if PRIMES.contains(&val) {
+        return val;
     } else {
         println!("The entered number is not a prime number.");
-        get_q()
+        get_val(name)
     }
 }
 
-pub fn get_e() -> u128 {
-    print!("Enter public key 'e' : ");
+
+pub fn get_value(name: &str) -> u128 {
+    print!("Enter key '{}' : ", name);
     io::stdout().flush().unwrap();
+    
     loop {
-        let mut e = String::new();
-        io::stdin().read_line(&mut e).expect("Error");
-
-        let e = e.trim();
-
-        match e.parse::<u128>() {
-            Ok(e) => return e,
+        let mut value = String::new();
+        io::stdin().read_line(&mut value).expect("Error");
+        
+        let value = value.trim();
+        
+        match value.parse::<u128>(){
+            Ok(value) => return value,
             Err(_) => println!("Invalid input. Please enter a number"),
         }
     }
 }
 
-pub fn get_n() -> u128 {
-    print!("Enter public key 'n' : ");
-    io::stdout().flush().unwrap();
-    loop {
-        let mut n = String::new();
-        io::stdin().read_line(&mut n).expect("Error");
-
-        let n = n.trim();
-
-        match n.parse::<u128>() {
-            Ok(n) => return n,
-            Err(_) => println!("Invalid input. Please enter a number"),
-        }
-    }
-}
-
-pub fn get_d() -> u128 {
-    print!("Enter public key 'd' : ");
-    io::stdout().flush().unwrap();
-    loop {
-        let mut d = String::new();
-        io::stdin().read_line(&mut d).expect("Error");
-
-        let d = d.trim();
-
-        match d.parse::<u128>() {
-            Ok(d) => return d,
-            Err(_) => println!("Invalid input. Please enter a number"),
-        }
-    }
-}
 
 pub fn compute_keys() {
-    let p: u128 = get_p();
-    let q: u128 = get_q();
+    let p: u128 = get_val("p");
+    let q: u128 = get_val("q");
     let n: u128 = p * q;
     let phi_n = (p - 1) * (q - 1);
 
     let mut e: u128;
     loop {
-        e = get_e();
+        e = get_value("e");
         if e.gcd(phi_n) == 1 {
             break;
         }
@@ -204,8 +148,8 @@ pub fn get_user_choice() -> u8 {
 pub fn encryption() {
     println!("ENCRYPTION");
     println!("----------------");
-    let e = get_e();
-    let n = get_n();
+    let e = get_value("e");
+    let n = get_value("n");
     let m = get_plain_text();
 
     let m_split: Vec<char> = m.chars().collect();
@@ -252,8 +196,8 @@ pub fn decryption() {
     println!("DECRYPTION");
     println!("----------------");
 
-    let d = get_d();
-    let n = get_n();
+    let d = get_value("d");
+    let n = get_value("n");
     let c = get_encrypted_text();
 
     let mut c_split: Vec<u128> = Vec::new();
