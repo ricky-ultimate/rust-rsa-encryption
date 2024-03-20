@@ -2,10 +2,10 @@ use gcd::Gcd;
 use std::io;
 use std::io::Write;
 
-const PRIMES: [u128;46] = [
-    2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89,
-    97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181,
-    191, 193, 197, 199,
+const PRIMES: [u128; 46] = [
+    2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97,
+    101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193,
+    197, 199,
 ];
 
 fn main() {
@@ -32,7 +32,7 @@ fn main() {
             3 => {
                 clearscreen::clear().expect("Failed to clear screen");
                 decryption();
-                break
+                break;
             }
             4 => break,
             _ => println!("Invalid choice. Please enter 1, 2, 3 or 4."),
@@ -41,14 +41,13 @@ fn main() {
 }
 
 pub fn get_val(name: &str) -> u128 {
-    
     print!("Enter {}: ", name);
     io::stdout().flush().unwrap();
-    
+
     let mut val = String::new();
-    
+
     io::stdin().read_line(&mut val).expect("Error");
-    
+
     let val: u128 = match val.trim().parse() {
         Ok(i) => i,
         Err(_) => {
@@ -58,7 +57,7 @@ pub fn get_val(name: &str) -> u128 {
             get_val(name)
         }
     };
-    
+
     if PRIMES.contains(&val) {
         return val;
     } else {
@@ -67,24 +66,22 @@ pub fn get_val(name: &str) -> u128 {
     }
 }
 
-
 pub fn get_key(name: &str) -> u128 {
     print!("Enter key '{}' : ", name);
     io::stdout().flush().unwrap();
-    
+
     loop {
         let mut value = String::new();
         io::stdin().read_line(&mut value).expect("Error");
-        
+
         let value = value.trim();
-        
-        match value.parse::<u128>(){
+
+        match value.parse::<u128>() {
             Ok(value) => return value,
             Err(_) => println!("Invalid input. Please enter a number"),
         }
     }
 }
-
 
 pub fn compute_keys() {
     let p: u128 = get_val("p");
@@ -157,18 +154,9 @@ pub fn encryption() {
     let m_ascii: Vec<u128> = m
         .chars()
         .map(|m| match m {
-            '1' => 1,
-            '2' => 2,
-            '3' => 3,
-            '4' => 4,
-            '5' => 5,
-            '6' => 6,
-            '7' => 7,
-            '8' => 8,
-            '9' => 9,
             '0' => 0,
             ' ' => 0,
-            ',' => 3,
+            //',' => 3,
             m if m.is_ascii_lowercase() => m as u128 - 'a' as u128 + 1,
             m if m.is_ascii_uppercase() => m as u128 - 'A' as u128 + 1,
             _ => panic!("no"),
@@ -227,19 +215,10 @@ pub fn decryption() {
     let m_pl_txt: Vec<char> = m_ascii
         .into_iter()
         .map(|m| match m {
-            1 => '1',
-            2 => '2',
-            3 => '3',
-            4 => '4',
-            5 => '5',
-            6 => '6',
-            7 => '7',
-            8 => '8',
-            9 => '9',
             0 => ' ',
-            3 => ',',
+            //3 => ',',
             m if m >= 1 && m <= 26 => (m as u8 - 1 + b'a') as char,
-            m if m >= 27 && m <= 27 => (m as u8 - 27 + b'A') as char,
+            m if m >= 27 && m <= 50 => (m as u8 - 27 + b'A') as char,
             _ => panic!("Invalid number"),
         })
         .collect();
@@ -263,9 +242,11 @@ pub fn display() {
 pub fn get_message(name: &str) -> String {
     print!("Enter {} Text: ", name);
     io::stdout().flush().unwrap();
-    
+
     let mut msg = String::new();
-    io::stdin().read_line(&mut msg).expect("Error getting message");
-    
+    io::stdin()
+        .read_line(&mut msg)
+        .expect("Error getting message");
+
     return msg.trim().parse().unwrap();
 }
