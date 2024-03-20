@@ -1,6 +1,4 @@
-mod encryption;
-mod decryption;
-mod generate_keys;
+mod core;
 
 use std::io;
 use std::io::Write;
@@ -24,17 +22,17 @@ fn main() {
         match choice {
             1 => {
                 clearscreen::clear().expect("Failed to clear screen");
-                generate_keys::generate_keys();
+                core::generate_keys::generate_keys();
                 break;
             }
             2 => {
                 clearscreen::clear().expect("Failed to clear screen");
-                encryption::encryption();
+                core::encryption::encryption();
                 break;
             }
             3 => {
                 clearscreen::clear().expect("Failed to clear screen");
-                decryption::decryption();
+                core::decryption::decryption();
                 break;
             }
             4 => break,
