@@ -1,5 +1,5 @@
 use gcd::Gcd;
-use crate::{get_key, get_val};
+use crate::utils::{get_key, get_val};
 
 pub fn generate_keys() {
     let p: u128 = get_val("p");

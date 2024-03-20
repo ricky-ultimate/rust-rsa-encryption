@@ -1,4 +1,4 @@
-use crate::{get_key, get_message};
+use crate::utils::{get_key, get_message};
 
 pub fn encryption() {
     println!("ENCRYPTION");

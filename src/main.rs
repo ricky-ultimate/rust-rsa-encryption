@@ -19,7 +19,7 @@ fn main() {
         print!("Enter option (1/2/3/4): ");
         io::stdout().flush().unwrap();
 
-        let choice = get_user_choice();
+        let choice = utils::get_user_choice();
 
         match choice {
             1 => {
