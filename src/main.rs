@@ -68,7 +68,7 @@ pub fn get_val(name: &str) -> u128 {
 }
 
 
-pub fn get_value(name: &str) -> u128 {
+pub fn get_key(name: &str) -> u128 {
     print!("Enter key '{}' : ", name);
     io::stdout().flush().unwrap();
     
@@ -94,7 +94,7 @@ pub fn compute_keys() {
 
     let mut e: u128;
     loop {
-        e = get_value("e");
+        e = get_key("e");
         if e.gcd(phi_n) == 1 {
             break;
         }
@@ -124,7 +124,7 @@ pub fn compute_keys() {
     println!("Public key is (e,n) => ({},{})", pub_key[0], pub_key[1]);
     println!("Private key is (d,n) => ({},{})", priv_key[0], priv_key[1]);
 
-    println!("");
+    println!();
 }
 
 pub fn get_user_choice() -> u8 {
@@ -148,9 +148,9 @@ pub fn get_user_choice() -> u8 {
 pub fn encryption() {
     println!("ENCRYPTION");
     println!("----------------");
-    let e = get_value("e");
-    let n = get_value("n");
-    let m = get_plain_text();
+    let e = get_key("e");
+    let n = get_key("n");
+    let m = get_message("Plain");
 
     let m_split: Vec<char> = m.chars().collect();
 
@@ -189,16 +189,16 @@ pub fn encryption() {
 
     println!(" Cipher Text: {:?}", c);
 
-    println!("");
+    println!();
 }
 
 pub fn decryption() {
     println!("DECRYPTION");
     println!("----------------");
 
-    let d = get_value("d");
-    let n = get_value("n");
-    let c = get_encrypted_text();
+    let d = get_key("d");
+    let n = get_key("n");
+    let c = get_message("Cipher");
 
     let mut c_split: Vec<u128> = Vec::new();
     let mut m_ascii: Vec<u128> = Vec::new();
@@ -214,7 +214,7 @@ pub fn decryption() {
         c_split.push(j);
     }
 
-    println!("");
+    println!();
     println!("Cipher text: {:?}", c_split);
 
     for i in c_split {
@@ -246,40 +246,26 @@ pub fn decryption() {
 
     println!("Plain Text : {:?}", m_pl_txt);
 
-    println!("");
+    println!();
 }
 
 pub fn display() {
     println!("RSA Calculator");
     println!("----------------");
-    println!("");
+    println!();
     println!("1. Generate Keys");
     println!("2. Encryption");
     println!("3. Decryption");
     println!("4. Quit and exit");
-    println!("");
+    println!();
 }
 
-pub fn get_plain_text() -> String {
-    print!("Enter message to be encrypted: ");
+pub fn get_message(name: &str) -> String {
+    print!("Enter {} Text: ", name);
     io::stdout().flush().unwrap();
-
-    let mut m = String::new();
-    io::stdin()
-        .read_line(&mut m)
-        .expect("Error handling plain text!");
-
-    return m.trim().parse().unwrap();
-}
-
-pub fn get_encrypted_text() -> String {
-    print!("Enter message to be decrypted: ");
-    io::stdout().flush().unwrap();
-
-    let mut c = String::new();
-    io::stdin()
-        .read_line(&mut c)
-        .expect("Error handling plain text!");
-
-    return c.trim().parse().unwrap();
+    
+    let mut msg = String::new();
+    io::stdin().read_line(&mut msg).expect("Error getting message");
+    
+    return msg.trim().parse().unwrap();
 }
