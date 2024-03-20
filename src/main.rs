@@ -61,7 +61,7 @@ pub fn get_val(name: &str) -> u128 {
     if PRIMES.contains(&val) {
         return val;
     } else {
-        println!("The entered number is not a prime number.");
+        println!("The provided numbers is not prime!");
         get_val(name)
     }
 }
@@ -149,7 +149,7 @@ pub fn encryption() {
     let n = get_key("n");
     let m = get_message("Plain");
 
-    let m_split: Vec<char> = m.chars().collect();
+    //let m_split: Vec<char> = m.chars().collect();
 
     let m_ascii: Vec<u128> = m
         .chars()
@@ -159,7 +159,7 @@ pub fn encryption() {
             //',' => 3,
             m if m.is_ascii_lowercase() => m as u128 - 'a' as u128 + 1,
             m if m.is_ascii_uppercase() => m as u128 - 'A' as u128 + 1,
-            _ => panic!("no"),
+            _ => panic!("Invalid character provided"),
         })
         .collect();
 
@@ -167,8 +167,8 @@ pub fn encryption() {
 
     println!(" ");
 
-    println!(" Plain Text: {:?}", m_split);
-    println!(" Plain (ASCII) Text: {:?}", m_ascii);
+    // println!(" Plain Text: {:?}", m_split);
+    // println!(" Plain (ASCII) Text: {:?}", m_ascii);
 
     for i in m_ascii {
         let encrypted_ascii_msg = i.pow(e.try_into().unwrap()) % n;
