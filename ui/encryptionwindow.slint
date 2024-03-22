@@ -1,0 +1,65 @@
+import { Button, VerticalBox, LineEdit } from "std-widgets.slint";
+
+export component EncryptionWindow inherits Window {
+
+    //property <string> keys: "";
+
+    background: #313e50;
+    GridLayout {
+        padding: 50px;
+        spacing: 35px;
+        Row {
+            Text {
+                text: "ENCYPTION";
+                horizontal-alignment: center;
+                font-size: 25px;
+                font-weight: 1000;
+                color: red;
+            }
+        }
+
+        Row {
+            LineEdit {
+                font-size: 16px;
+                placeholder-text: "Enter P";
+
+            }
+        }
+
+        Row {
+            LineEdit {
+                font-size: 16px;
+                placeholder-text: "Enter q";
+            }
+        }
+
+        Row {
+            LineEdit {
+                font-size: 16px;
+                placeholder-text: "Enetr public key \"e\" ";
+            }
+        }
+
+        Row {
+            Button {
+                text: "Generate keys";
+                primary: true;
+                clicked => {}
+            }
+        }
+
+        Row {
+            VerticalBox {
+                Rectangle {
+                    height: 50px;
+                    background: #000000;
+                    Text {
+                        color: white;
+                        font-size: 16px;
+                        //text: root.keys;
+                    }
+                }
+            }
+        }
+    }
+}

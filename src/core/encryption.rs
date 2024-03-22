@@ -6,9 +6,9 @@ pub fn encryption() {
     let e = get_key("e");
     let n = get_key("n");
     let m = get_message("Plain");
-    
+
     //let m_split: Vec<char> = m.chars().collect();
-    
+
     let m_ascii: Vec<u128> = m
         .chars()
         .map(|m| match m {
@@ -20,20 +20,20 @@ pub fn encryption() {
             _ => panic!("Invalid character provided"),
         })
         .collect();
-    
+
     let mut c: Vec<u128> = Vec::new();
-    
+
     println!(" ");
-    
+
     // println!(" Plain Text: {:?}", m_split);
     // println!(" Plain (ASCII) Text: {:?}", m_ascii);
-    
+
     for i in m_ascii {
         let encrypted_ascii_msg = i.pow(e.try_into().unwrap()) % n;
         c.push(encrypted_ascii_msg);
     }
-    
-    println!(" Cipher Text: {:?}", c);
-    
+
+    println!("Cipher Text: {:?}", c);
+
     println!();
 }

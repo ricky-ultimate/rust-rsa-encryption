@@ -1,46 +1,41 @@
+use crate::win1::StartWindow;
+use crate::win2::EncryptionWindow;
+use crate::win3::DecryptionWindow;
+use crate::win4::KeyGenWindow;
+use slint::ComponentHandle;
+
 mod core;
 mod display;
 mod utils;
 
-use std::io;
-use std::io::Write;
-
-const PRIMES: [u128; 46] = [
-    2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97,
-    101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193,
-    197, 199,
-];
-
-fn main() {
-    clearscreen::clear().expect("FAILED TO CLEAR SCREEN");
-    display::display();
-
-    loop {
-        print!("Enter option (1/2/3/4): ");
-        io::stdout().flush().unwrap();
-
-        let choice = utils::get_user_choice();
-
-        match choice {
-            1 => {
-                clearscreen::clear().expect("Failed to clear screen");
-                core::generate_keys::generate_keys();
-                break;
-            }
-            2 => {
-                clearscreen::clear().expect("Failed to clear screen");
-                core::encryption::encryption();
-                break;
-            }
-            3 => {
-                clearscreen::clear().expect("Failed to clear screen");
-                core::decryption::decryption();
-                break;
-            }
-            4 => break,
-            _ => println!("Invalid choice. Please enter 1, 2, 3 or 4."),
-        }
-    }
+mod win1 {
+    include!(env!("SLINT_INCLUDE_START"));
+}
+mod win2 {
+    include!(env!("SLINT_INCLUDE_ENCRYPT"));
 }
 
+mod win3 {
+    include!(env!("SLINT_INCLUDE_DECRYPT"));
+}
 
+mod win4 {
+    include!(env!("SLINT_INCLUDE_KEYGEN"));
+}
+
+fn main() -> Result<(), slint::PlatformError> {
+    let start_win = StartWindow::new()?;
+    let key_gen_win = KeyGenWindow::new()?;
+    let encrypt_win = EncryptionWindow::new()?;
+    let decrypt_win = DecryptionWindow::new()?;
+
+    // ui.on_request_increase_value({
+    //     let ui_handle = ui.as_weak();
+    //     move || {
+    //         let ui = ui_handle.unwrap();
+    //         ui.set_counter(ui.get_counter() + 1);
+    //     }
+    // });
+
+    start_win.run()
+}
