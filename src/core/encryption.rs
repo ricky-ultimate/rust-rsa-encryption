@@ -12,8 +12,7 @@ pub fn encryption() {
     let m_ascii: Vec<u128> = m
         .chars()
         .map(|m| match m {
-            '0' => 0,
-            ' ' => 0,
+            '0' => 0,            ' ' => 0,
             //',' => 3,
             m if m.is_ascii_lowercase() => m as u128 - 'a' as u128 + 1,
             m if m.is_ascii_uppercase() => m as u128 - 'A' as u128 + 1,
