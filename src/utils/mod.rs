@@ -60,7 +60,10 @@ pub fn get_user_choice() -> u8 {
 
         match choice.parse::<u8>() {
             Ok(choice) if (1..=4).contains(&choice) => return choice,
-            Ok(_) => println!("Invalid choice. Please enter (1/2/3/4)"),
+            Ok(_) => {
+                print!("Invalid choice. Please enter (1/2/3/4): ");
+                io::stdout().flush().unwrap();
+            },
             Err(_) => {
                 print!("Invalid input. Please enter a number: ");
                 io::stdout().flush().unwrap();
