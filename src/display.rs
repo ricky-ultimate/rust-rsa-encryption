@@ -40,7 +40,7 @@ pub fn display() {
                 break;
             }
             4 => break,
-            _ => println!("Invalid choice. Please enter 1, 2, 3 or 4."),
+            _ => {}
         }
     }
 }
