@@ -63,11 +63,11 @@ pub fn get_user_choice() -> u8 {
             Ok(_) => {
                 print!("Invalid choice. Please enter (1/2/3/4): ");
                 io::stdout().flush().unwrap();
-            },
+            }
             Err(_) => {
-                print!("Invalid input. Please enter a number: ");
+                print!("Invalid input. Please enter numbers 1, 2, 3, or 4: ");
                 io::stdout().flush().unwrap();
-            },
+            }
         }
         io::stdout().flush().unwrap();
     }
@@ -78,9 +78,7 @@ pub fn get_message(name: &str) -> String {
     io::stdout().flush().unwrap();
 
     let mut msg = String::new();
-    io::stdin()
-        .read_line(&mut msg)
-        .expect("Error getting message");
-
+    io::stdin().read_line(&mut msg).expect("Invalid Message!");
+    
     return msg.trim().parse().unwrap();
 }
